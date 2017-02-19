@@ -1,0 +1,11 @@
+{
+    "name": "farmerant/farmerantcrawl",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Casper Lai",
+            "email": "casper.lai@sleepingdesign.com"
+        }
+    ],
+    "require": {}
+}
