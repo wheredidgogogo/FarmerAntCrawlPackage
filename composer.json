@@ -7,5 +7,17 @@
             "email": "casper.lai@sleepingdesign.com"
         }
     ],
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Farmerant\\Farmerantcrawl\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Farmerant\\Tests\\": "tests"
+        }
+    }
 }
