@@ -60,8 +60,16 @@ class Address implements ListingInterface
      * @param $postCode
      * @param $country
      */
-    public function __construct($latitude, $longitude, $line1, $line2, $locality, $state, $postCode, $country)
-    {
+    public function __construct(
+        $latitude = null,
+        $longitude = null,
+        $line1 = null,
+        $line2 = null,
+        $locality = null,
+        $state = null,
+        $postCode = null,
+        $country = null
+    ) {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
         $this->line1 = $line1;
