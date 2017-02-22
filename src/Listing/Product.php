@@ -2,12 +2,28 @@
 
 namespace Farmerant\Farmerantcrawl\Listing;
 
+use Farmerant\Farmerantcrawl\Contract\ListingInterface;
+use Illuminate\Support\Collection;
+
 /**
  * Class Product
  * @package Farmerant\Farmerantcrawl\Listing
  */
-class Product
+class Product implements ListingInterface
 {
+    /**
+     *
+     */
+    const STATUS_ACTIVE = 'Active';
+    /**
+     *
+     */
+    const STATUS_SOLD = 'Sold';
+    /**
+     *
+     */
+    const STATUS_DELETED = 'Deleted';
+
     /**
      * @var
      */
@@ -23,7 +39,7 @@ class Product
     /**
      * @var
      */
-    public $state;
+    public $status;
     /**
      * @var
      */
@@ -40,6 +56,12 @@ class Product
      * @var
      */
     public $longitude;
+
+    /**
+     * @var
+     */
+    public $price;
+
     /**
      * @var
      */
@@ -54,13 +76,22 @@ class Product
      */
     protected $tags = [];
     /**
-     * @var array
+     * @var Collection
      */
-    protected $images = [];
+    protected $images;
     /**
-     * @var array
+     * @var Collection
      */
-    protected $suppliers = [];
+    protected $suppliers;
+
+    /**
+     * Product constructor.
+     */
+    public function __construct()
+    {
+        $this->images = new Collection();
+        $this->suppliers = new Collection();
+    }
 
     /**
      * @param array $array
@@ -77,7 +108,7 @@ class Product
      */
     public function addImage(Image $image)
     {
-        $this->images[] = $image;
+        $this->images->push($image);
     }
 
     /**
@@ -86,6 +117,8 @@ class Product
     public function addTag(array $tag)
     {
         $this->tags[] = $tag;
+
+        return $this;
     }
 
     /**
@@ -93,7 +126,33 @@ class Product
      */
     public function addSupplier(Supplier $supplier)
     {
-        $this->suppliers[] = $supplier;
+        $this->suppliers->push($supplier);
     }
 
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'url' => $this->url,
+            'title' => $this->title,
+            'description' => $this->description,
+            'status' => $this->status,
+            'category' => $this->category,
+            'website_name' => $this->websiteName,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'price' => $this->price,
+            'currency' => $this->currency,
+            'price_description' => $this->priceDescription,
+            'tags' => $this->tags,
+            'images' => $this->images->map(function (Image $image){
+                return $image->toArray();
+            })->toArray(),
+            'suppliers' => $this->suppliers->map(function (Supplier $supplier) {
+                return $supplier->toArray();
+            })->toArray(),
+        ];
+    }
 }
