@@ -85,6 +85,15 @@ class Product implements ListingInterface
     protected $suppliers;
 
     /**
+     * @var
+     */
+    private $language;
+    /**
+     * @var
+     */
+    private $sourceCountry;
+
+    /**
      * Product constructor.
      */
     public function __construct()
@@ -113,6 +122,7 @@ class Product implements ListingInterface
 
     /**
      * @param array $tag
+     * @return $this
      */
     public function addTag(array $tag)
     {
@@ -147,6 +157,8 @@ class Product implements ListingInterface
             'currency' => $this->currency,
             'price_description' => $this->priceDescription,
             'tags' => $this->tags,
+            'language' => $this->language,
+            'source_country' => $this->sourceCountry,
             'images' => $this->images->map(function (Image $image){
                 return $image->toArray();
             })->toArray(),

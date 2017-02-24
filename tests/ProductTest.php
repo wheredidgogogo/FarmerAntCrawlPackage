@@ -37,6 +37,8 @@ class ProductTest extends TestCase
             'price' => 2000000,
             'currency' => 'USD',
             'priceDescription' => '',
+            'language' => 'AU',
+            'sourceCountry' => 'AU',
         ];
         $this->product = new Product();
         $this->product->fill($data);
