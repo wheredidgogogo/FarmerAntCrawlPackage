@@ -75,7 +75,7 @@ class FarmerAntCrawler
     private function request($product)
     {
         return $this->client->request('POST', '/api/crawl', [
-            'header' => [
+            'headers' => [
                 'Authorization' => $this->token,
             ],
             'json' => $product instanceof Product ? $product->toArray() : $product,
