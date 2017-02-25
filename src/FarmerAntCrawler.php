@@ -35,6 +35,7 @@ class FarmerAntCrawler
     {
         $this->token = $token;
         $this->client = new Client(['base_uri' => $url]);
+        $this->products = new Collection();
     }
 
     /**
@@ -45,6 +46,14 @@ class FarmerAntCrawler
     public function add(Product $product)
     {
         $this->products->push($product);
+    }
+
+    /**
+     * Clear products
+     */
+    public function clear()
+    {
+        $this->products = new Collection();
     }
 
     /**
