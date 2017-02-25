@@ -161,7 +161,7 @@ class Product implements ListingInterface
             'images' => $this->images->map(function (Image $image){
                 return $image->toArray();
             })->toArray(),
-            'suppliers' => $this->supplier ? $this->supplier->toArray() : [],
+            'supplier' => $this->supplier ? $this->supplier->toArray() : [],
         ];
     }
 }
