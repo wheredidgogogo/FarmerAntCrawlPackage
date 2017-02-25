@@ -41,9 +41,9 @@ class FarmerAntCrawler
     /**
      * Add products
      *
-     * @param Product $product
+     * @param mixed $product
      */
-    public function add(Product $product)
+    public function add($product)
     {
         $this->products->push($product);
     }
@@ -69,16 +69,16 @@ class FarmerAntCrawler
     /**
      * Request to api
      *
-     * @param Product $product
+     * @param mixed $product
      * @return mixed|\Psr\Http\Message\ResponseInterface
      */
-    private function request(Product $product)
+    private function request($product)
     {
         return $this->client->request('POST', '/api/crawl', [
             'header' => [
                 'Authorization' => $this->token,
             ],
-            'json' => $product->toArray(),
+            'json' => $product instanceof Product ? $product->toArray() : $product,
         ]);
     }
 }
