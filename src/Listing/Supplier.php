@@ -42,7 +42,7 @@ class Supplier implements ListingInterface
     /**
      * @var array
      */
-    private $tags;
+    private $tags = [];
 
     /**
      * Supplier constructor.
