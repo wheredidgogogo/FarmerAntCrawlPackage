@@ -122,26 +122,24 @@ class ProductTest extends TestCase
         );
 
         // Act
-        $this->product->addSupplier($supplier);
+        $this->product->setSupplier($supplier);
 
         // Assert
         $this->validArray([
             'suppliers' => [
-                [
-                    'supplier_name' => 'Supplier',
-                    'email' => 'test@example.com',
-                    'website' => 'http://www.google.com',
-                    'phone' => '+8869999999',
-                    'logo_url' => 'http://www.facebook.com',
-                    'latitude' => 20,
-                    'longitude' => 20,
-                    'address_line_1' => 'CHRIS NISWANDEE',
-                    'address_line_2' => 'SMALLSYS INC',
-                    'address_locality' => '795 E DRAGRAM',
-                    'address_state' => 'TUCSON',
-                    'address_post_code' => 85705,
-                    'address_country' => 'USA',
-                ],
+                'supplier_name' => 'Supplier',
+                'email' => 'test@example.com',
+                'website' => 'http://www.google.com',
+                'phone' => '+8869999999',
+                'logo_url' => 'http://www.facebook.com',
+                'latitude' => 20,
+                'longitude' => 20,
+                'address_line_1' => 'CHRIS NISWANDEE',
+                'address_line_2' => 'SMALLSYS INC',
+                'address_locality' => '795 E DRAGRAM',
+                'address_state' => 'TUCSON',
+                'address_post_code' => 85705,
+                'address_country' => 'USA',
             ],
         ]);
     }

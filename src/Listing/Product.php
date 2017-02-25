@@ -80,9 +80,9 @@ class Product implements ListingInterface
      */
     protected $images;
     /**
-     * @var Collection
+     * @var Supplier
      */
-    protected $suppliers;
+    protected $supplier;
 
     /**
      * @var
@@ -99,7 +99,6 @@ class Product implements ListingInterface
     public function __construct()
     {
         $this->images = new Collection();
-        $this->suppliers = new Collection();
     }
 
     /**
@@ -134,9 +133,9 @@ class Product implements ListingInterface
     /**
      * @param Supplier $supplier
      */
-    public function addSupplier(Supplier $supplier)
+    public function setSupplier(Supplier $supplier)
     {
-        $this->suppliers->push($supplier);
+        $this->supplier = $supplier;
     }
 
     /**
@@ -162,9 +161,7 @@ class Product implements ListingInterface
             'images' => $this->images->map(function (Image $image){
                 return $image->toArray();
             })->toArray(),
-            'suppliers' => $this->suppliers->map(function (Supplier $supplier) {
-                return $supplier->toArray();
-            })->toArray(),
+            'suppliers' => $this->supplier ? $this->supplier->toArray() : [],
         ];
     }
 }
