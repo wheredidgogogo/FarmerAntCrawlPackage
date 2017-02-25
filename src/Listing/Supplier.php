@@ -40,6 +40,11 @@ class Supplier implements ListingInterface
     private $address;
 
     /**
+     * @var array
+     */
+    private $tags;
+
+    /**
      * Supplier constructor.
      * @param $name
      * @param $email
@@ -77,6 +82,17 @@ class Supplier implements ListingInterface
     }
 
     /**
+     * @param $tag
+     * @return $this
+     */
+    public function addTag($tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function toArray()
@@ -87,6 +103,7 @@ class Supplier implements ListingInterface
             'website' => $this->website,
             'phone' => $this->phone,
             'logo_url' => $this->logoUrl,
+            'tags' => $this->tags,
         ], $this->getAddress()->toArray());
     }
 }

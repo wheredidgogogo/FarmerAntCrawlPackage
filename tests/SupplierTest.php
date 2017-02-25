@@ -20,6 +20,8 @@ class SupplierTest extends TestCase
             'http://www.facebook.com'
         );
 
+        $supplier->addTag(['tag' => 'value']);
+
         $supplier->setAddress(
             new Address(20, 20, 'CHRIS NISWANDEE', 'SMALLSYS INC', '795 E DRAGRAM', 'TUCSON', 85705, 'USA')
         );
@@ -39,6 +41,9 @@ class SupplierTest extends TestCase
             'address_state' => 'TUCSON',
             'address_post_code' => 85705,
             'address_country' => 'USA',
+            'tags' => [
+                ['tag' => 'value'],
+            ]
         ], $supplier->toArray());
     }
 }
