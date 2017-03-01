@@ -11,13 +11,22 @@ class ImageTest extends TestCase
     public function to_array()
     {
         // Arrange
-        $image = new Image('http://www.google.com/', 'Test', Image::TYPE_GALLERY);
+        $image = new Image();
+        $image->fill([
+            'originUrl' => 'http://www.google.com/',
+            'thumbUrl' => 'http://www.google.com/',
+            'largeUrl' => 'http://www.google.com/',
+            'order' => 1,
+            'name' => 'Test',
+        ]);
 
         // Assert
         $this->assertArraySubset([
             'image_url' => 'http://www.google.com/',
             'image_name' => 'Test',
-            'image_type' => 'gallery',
+            'image_order' => 1,
+            'image_thumb_url' => 'http://www.google.com/',
+            'image_large_url' => 'http://www.google.com/',
         ], $image->toArray());
     }
 }

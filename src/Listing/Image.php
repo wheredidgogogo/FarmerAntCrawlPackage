@@ -2,6 +2,7 @@
 
 namespace Farmerant\Farmerantcrawl\Listing;
 
+use Farmerant\Farmerantcrawl\Contract\Fillable;
 use Farmerant\Farmerantcrawl\Contract\ListingInterface;
 
 /**
@@ -10,41 +11,37 @@ use Farmerant\Farmerantcrawl\Contract\ListingInterface;
  */
 class Image implements ListingInterface
 {
-    /**
-     *
-     */
-    const TYPE_MAIN = 'main';
+    use Fillable;
 
-    /**
-     *
-     */
-    const TYPE_GALLERY = 'gallery';
-
-    /**
-     * @var
-     */
-    private $url;
     /**
      * @var
      */
     private $name;
+
     /**
      * @var
      */
-    private $type;
+    private $description;
 
     /**
-     * Image constructor.
-     * @param $url
-     * @param $name
-     * @param $type
+     * @var
      */
-    public function __construct($url, $name, $type)
-    {
-        $this->url = $url;
-        $this->name = $name;
-        $this->type = $type;
-    }
+    private $order;
+
+    /**
+     * @var
+     */
+    private $originUrl;
+
+    /**
+     * @var
+     */
+    private $thumbUrl;
+
+    /**
+     * @var
+     */
+    private $largeUrl;
 
     /**
      * @return array
@@ -52,9 +49,11 @@ class Image implements ListingInterface
     public function toArray()
     {
         return [
-            'image_url' => $this->url,
+            'image_url' => $this->originUrl,
             'image_name' => $this->name,
-            'image_type' => $this->type,
+            'image_order' => $this->order,
+            'image_thumb_url' => $this->thumbUrl,
+            'image_large_url' => $this->largeUrl,
         ];
     }
 }

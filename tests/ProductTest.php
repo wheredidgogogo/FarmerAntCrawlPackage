@@ -37,8 +37,8 @@ class ProductTest extends TestCase
             'price' => 2000000,
             'currency' => 'USD',
             'priceDescription' => '',
-            'language' => 'AU',
-            'sourceCountry' => 'AU',
+            'language' => 'English',
+            'sourceCountry' => 'Australia',
         ];
         $this->product = new Product();
         $this->product->fill($data);
@@ -46,7 +46,7 @@ class ProductTest extends TestCase
 
     protected function validArray($options)
     {
-        $this->assertArraySubset(array_merge([
+        $this->assertArraySubset($this->product->toArray(), array_merge([
             'url' => 'http://www.google.com',
             'title' => 'Product 1',
             'description' => 'Product Description',
@@ -58,10 +58,12 @@ class ProductTest extends TestCase
             'price' => 2000000,
             'currency' => 'USD',
             'price_description' => '',
+            'language' => 'English',
+            'source_country' => 'Australia',
             'tags' => [],
             'images' => [],
-            'suppliers' => [],
-        ], $options), $this->product->toArray());
+            'supplier' => [],
+        ], $options));
     }
 
     /** @test */
@@ -90,19 +92,28 @@ class ProductTest extends TestCase
     public function add_images()
     {
         // Arrange
-        $image = new Image('http://www.google.com/', 'Test', Image::TYPE_GALLERY);
+        $image = new Image();
+        $image->fill([
+            'originUrl' => 'http://www.google.com/',
+            'thumbUrl' => 'http://www.google.com/',
+            'largeUrl' => 'http://www.google.com/',
+            'order' => 1,
+            'name' => 'Test',
+        ]);
         // Act
         $this->product->addImage($image);
 
         // Assert
         $this->validArray([
-           'images' => [
-             [
-                 'image_url' => 'http://www.google.com/',
-                 'image_name' => 'Test',
-                 'image_type' => 'gallery',
-             ],
-           ],
+            'images' => [
+                [
+                    'image_url' => 'http://www.google.com/',
+                    'image_name' => 'Test',
+                    'image_order' => 1,
+                    'image_thumb_url' => 'http://www.google.com/',
+                    'image_large_url' => 'http://www.google.com/',
+                ],
+            ],
         ]);
     }
 
@@ -126,7 +137,7 @@ class ProductTest extends TestCase
 
         // Assert
         $this->validArray([
-            'suppliers' => [
+            'supplier' => [
                 'supplier_name' => 'Supplier',
                 'email' => 'test@example.com',
                 'website' => 'http://www.google.com',
@@ -140,6 +151,7 @@ class ProductTest extends TestCase
                 'address_state' => 'TUCSON',
                 'address_post_code' => 85705,
                 'address_country' => 'USA',
+                'tags' => [],
             ],
         ]);
     }
