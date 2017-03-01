@@ -28,33 +28,50 @@ class Product implements ListingInterface
     const STATUS_DELETED = 'Deleted';
 
     /**
+     * @var integer
+     */
+    public $id;
+
+    /**
      * @var
      */
     public $url;
+
     /**
      * @var
      */
     public $title;
+
     /**
      * @var
      */
     public $description;
+
     /**
      * @var
      */
     public $status;
+
     /**
      * @var
      */
     public $category;
+
     /**
      * @var
      */
     public $websiteName;
+
+    /**
+     * @var
+     */
+    public $source;
+
     /**
      * @var
      */
     public $latitude;
+
     /**
      * @var
      */
@@ -69,6 +86,7 @@ class Product implements ListingInterface
      * @var
      */
     public $currency;
+
     /**
      * @var
      */
@@ -78,10 +96,12 @@ class Product implements ListingInterface
      * @var array
      */
     protected $tags = [];
+
     /**
      * @var Collection
      */
     protected $images;
+
     /**
      * @var Supplier
      */
@@ -91,6 +111,7 @@ class Product implements ListingInterface
      * @var
      */
     private $language;
+
     /**
      * @var
      */
@@ -99,9 +120,10 @@ class Product implements ListingInterface
     /**
      * Product constructor.
      */
-    public function __construct()
+    public function __construct($source)
     {
         $this->images = new Collection();
+        $this->source = $source;
     }
 
     /**
@@ -139,6 +161,7 @@ class Product implements ListingInterface
         return [
             'url' => $this->url,
             'title' => $this->title,
+            'source_listing_id' => $this->getSourceId(),
             'description' => $this->description,
             'status' => $this->status,
             'category' => $this->category,
@@ -154,7 +177,16 @@ class Product implements ListingInterface
             'images' => $this->images->map(function (Image $image){
                 return $image->toArray();
             })->toArray(),
-            'supplier' => $this->supplier ? $this->supplier->toArray() : [],
+            'supplier' => $this->supplier ?
+                array_merge($this->supplier->toArray(), ['source_supplier_id' => $this->getSourceId()]) : [],
         ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function getSourceId()
+    {
+        return "{$this->source}-{$this->id}";
     }
 }
