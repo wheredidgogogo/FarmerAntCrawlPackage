@@ -2,6 +2,7 @@
 
 namespace Farmerant\Farmerantcrawl\Listing;
 
+use Farmerant\Farmerantcrawl\Contract\Fillable;
 use Farmerant\Farmerantcrawl\Contract\ListingInterface;
 use Illuminate\Support\Collection;
 
@@ -11,6 +12,8 @@ use Illuminate\Support\Collection;
  */
 class Product implements ListingInterface
 {
+    use Fillable;
+
     /**
      *
      */
@@ -99,16 +102,6 @@ class Product implements ListingInterface
     public function __construct()
     {
         $this->images = new Collection();
-    }
-
-    /**
-     * @param array $array
-     */
-    public function fill($array = [])
-    {
-        foreach ($array as $key => $value) {
-            $this->{$key} = $value;
-        }
     }
 
     /**
