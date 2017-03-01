@@ -87,8 +87,8 @@ class Address implements ListingInterface
     public function toArray()
     {
         return [
-            'latitude' => $this->latitude,
-            'longitude' => $this->longitude,
+            'lat' => $this->latitude,
+            'lng' => $this->longitude,
             'address_line_1' => $this->line1,
             'address_line_2' => $this->line2,
             'address_locality' => $this->locality,

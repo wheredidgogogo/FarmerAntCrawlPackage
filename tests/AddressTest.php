@@ -15,8 +15,8 @@ class AddressTest extends TestCase
 
         // Assert
         $this->assertArraySubset([
-            'latitude' => 20,
-            'longitude' => 20,
+            'lat' => 20,
+            'lng' => 20,
             'address_line_1' => 'CHRIS NISWANDEE',
             'address_line_2' => 'SMALLSYS INC',
             'address_locality' => '795 E DRAGRAM',
