@@ -55,7 +55,7 @@ class Product implements ListingInterface
     /**
      * @var
      */
-    public $category;
+    public $primaryCategory;
 
     /**
      * @var
@@ -183,7 +183,7 @@ class Product implements ListingInterface
             'source_listing_id' => $this->getSourceId(),
             'description' => $this->description,
             'status' => $this->status,
-            'category' => $this->category,
+            'primary_category' => $this->primaryCategory,
             'website_name' => $this->websiteName,
             'price' => $this->price,
             'currency' => $this->currency,
