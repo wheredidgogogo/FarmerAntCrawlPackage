@@ -91,10 +91,10 @@ class Address implements ListingInterface
             'lng' => $this->longitude,
             'address_line_1' => $this->line1,
             'address_line_2' => $this->line2,
-            'address_locality' => $this->locality,
-            'address_state' => $this->state,
-            'address_post_code' => $this->postCode,
-            'address_country' => $this->country,
+            'locality' => $this->locality,
+            'state' => $this->state,
+            'country' => $this->country,
+            'post_code' => $this->postCode,
         ];
     }
 }

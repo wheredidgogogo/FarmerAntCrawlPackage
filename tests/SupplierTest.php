@@ -37,10 +37,10 @@ class SupplierTest extends TestCase
             'lng' => 20,
             'address_line_1' => 'CHRIS NISWANDEE',
             'address_line_2' => 'SMALLSYS INC',
-            'address_locality' => '795 E DRAGRAM',
-            'address_state' => 'TUCSON',
-            'address_post_code' => 85705,
-            'address_country' => 'USA',
+            'locality' => '795 E DRAGRAM',
+            'state' => 'TUCSON',
+            'post_code' => 85705,
+            'country' => 'USA',
             'tags' => [
                 ['tag' => 'value'],
             ]
