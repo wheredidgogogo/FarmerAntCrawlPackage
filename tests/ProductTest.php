@@ -33,15 +33,17 @@ class ProductTest extends TestCase
             'status' => Product::STATUS_ACTIVE,
             'category' => 'EquipmentSale',
             'websiteName' => 'google',
-            'latitude' => 20,
-            'longitude' => 20,
             'price' => 2000000,
             'currency' => 'USD',
+            'symbol' => '$',
             'priceDescription' => '',
             'language' => 'English',
             'sourceCountry' => 'Australia',
         ];
         $this->product = new Product('google');
+        $this->product->setAddress(
+            new Address(20, 20, 'CHRIS NISWANDEE', 'SMALLSYS INC', '795 E DRAGRAM', 'TUCSON', 85705, 'USA')
+        );
         $this->product->fill($data);
     }
 
@@ -55,13 +57,20 @@ class ProductTest extends TestCase
             'status' => 'Active',
             'category' => 'EquipmentSale',
             'website_name' => 'google',
-            'lat' => 20,
-            'lng' => 20,
             'price' => 2000000,
             'currency' => 'USD',
+            'symbol' => '$',
             'price_description' => '',
             'language' => 'English',
             'source_country' => 'Australia',
+            'lat' => 20,
+            'lng' => 20,
+            'address_line_1' => 'CHRIS NISWANDEE',
+            'address_line_2' => 'SMALLSYS INC',
+            'address_locality' => '795 E DRAGRAM',
+            'address_state' => 'TUCSON',
+            'address_post_code' => 85705,
+            'address_country' => 'USA',
             'tags' => [],
             'images' => [],
             'supplier' => [],

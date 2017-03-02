@@ -70,22 +70,17 @@ class Product implements ListingInterface
     /**
      * @var
      */
-    public $latitude;
-
-    /**
-     * @var
-     */
-    public $longitude;
-
-    /**
-     * @var
-     */
     public $price;
 
     /**
      * @var
      */
     public $currency;
+
+    /**
+     * @var
+     */
+    public $symbol;
 
     /**
      * @var
@@ -116,6 +111,11 @@ class Product implements ListingInterface
      * @var
      */
     private $sourceCountry;
+
+    /**
+     * @var Address
+     */
+    private $address;
 
     /**
      * Product constructor.
@@ -154,11 +154,30 @@ class Product implements ListingInterface
     }
 
     /**
+     * @param Address $address
+     * @return $this
+     */
+    public function setAddress(Address $address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Address
+     */
+    public function getAddress()
+    {
+        return $this->address ?: new Address();
+    }
+
+    /**
      * @return array
      */
     public function toArray()
     {
-        return [
+        return array_merge([
             'url' => $this->url,
             'title' => $this->title,
             'source_listing_id' => $this->getSourceId(),
@@ -166,10 +185,9 @@ class Product implements ListingInterface
             'status' => $this->status,
             'category' => $this->category,
             'website_name' => $this->websiteName,
-            'lat' => $this->latitude,
-            'lng' => $this->longitude,
             'price' => $this->price,
             'currency' => $this->currency,
+            'symbol' => $this->symbol,
             'price_description' => $this->priceDescription,
             'tags' => $this->tags,
             'language' => $this->language,
@@ -179,7 +197,7 @@ class Product implements ListingInterface
             })->toArray(),
             'supplier' => $this->supplier ?
                 array_merge($this->supplier->toArray(), ['source_supplier_id' => $this->getSourceId()]) : [],
-        ];
+        ], $this->getAddress()->toArray());
     }
 
     /**
