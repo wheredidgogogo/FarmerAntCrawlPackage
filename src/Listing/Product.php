@@ -80,7 +80,7 @@ class Product implements ListingInterface
     /**
      * @var
      */
-    public $symbol;
+    public $currencySymbol;
 
     /**
      * @var
@@ -187,7 +187,7 @@ class Product implements ListingInterface
             'website_name' => $this->websiteName,
             'price' => $this->price,
             'currency' => $this->currency,
-            'symbol' => $this->symbol,
+            'currency_symbol' => $this->currencySymbol,
             'price_description' => $this->priceDescription,
             'tags' => $this->tags,
             'language' => $this->language,
