@@ -12,15 +12,16 @@ class SupplierTest extends TestCase
     public function to_array()
     {
         // Arrange
-        $supplier = new Supplier(
-            'Supplier',
-            'test@example.com',
-            'http://www.google.com',
-            '+8869999999',
-            'http://www.facebook.com'
-        );
+        $supplier = new Supplier();
 
-        $supplier->fill(['type' => 'Private']);
+        $supplier->fill([
+            'name' => 'Supplier',
+            'email' => 'test@example.com',
+            'website' => 'http://www.google.com',
+            'phone' => '+8869999999',
+            'logoUrl' => 'http://www.facebook.com',
+            'type' => 'Private',
+        ]);
 
         $supplier->addTag(['tag' => 'value']);
 

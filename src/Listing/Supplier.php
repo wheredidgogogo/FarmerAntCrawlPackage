@@ -51,24 +51,6 @@ class Supplier implements ListingInterface
     private $tags = [];
 
     /**
-     * Supplier constructor.
-     * @param $name
-     * @param $email
-     * @param $website
-     * @param $phone
-     * @param $logoUrl
-     */
-    public function __construct($name, $email, $website, $phone, $logoUrl)
-    {
-        $this->name = $name;
-        $this->email = $email;
-        $this->website = $website;
-        $this->phone = $phone;
-        $this->logoUrl = $logoUrl;
-    }
-
-
-    /**
      * @param Address $address
      * @return $this
      */

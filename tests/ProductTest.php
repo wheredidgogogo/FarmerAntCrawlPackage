@@ -132,14 +132,17 @@ class ProductTest extends TestCase
     public function add_suppliers()
     {
         // Arrange
-        $supplier = new Supplier(
-            'Supplier',
-            'test@example.com',
-            'http://www.google.com',
-            '+8869999999',
-            'http://www.facebook.com'
-        );
-        $supplier->fill(['type' => 'Private']);
+        $supplier = new Supplier();
+
+        $supplier->fill([
+            'name' => 'Supplier',
+            'email' => 'test@example.com',
+            'website' => 'http://www.google.com',
+            'phone' => '+8869999999',
+            'logoUrl' => 'http://www.facebook.com',
+            'type' => 'Private',
+        ]);
+
         $supplier->setAddress(
             new Address(20, 20, 'CHRIS NISWANDEE', 'SMALLSYS INC', '795 E DRAGRAM', 'TUCSON', 85705, 'USA')
         );
