@@ -20,6 +20,8 @@ class SupplierTest extends TestCase
             'http://www.facebook.com'
         );
 
+        $supplier->fill(['type' => 'Private']);
+
         $supplier->addTag(['tag' => 'value']);
 
         $supplier->setAddress(
@@ -30,6 +32,7 @@ class SupplierTest extends TestCase
         $this->assertArraySubset([
             'supplier_name' => 'Supplier',
             'email' => 'test@example.com',
+            'type' => 'Private',
             'website' => 'http://www.google.com',
             'phone' => '+8869999999',
             'logo_url' => 'http://www.facebook.com',

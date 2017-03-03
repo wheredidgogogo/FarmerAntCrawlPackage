@@ -139,6 +139,7 @@ class ProductTest extends TestCase
             '+8869999999',
             'http://www.facebook.com'
         );
+        $supplier->fill(['type' => 'Private']);
         $supplier->setAddress(
             new Address(20, 20, 'CHRIS NISWANDEE', 'SMALLSYS INC', '795 E DRAGRAM', 'TUCSON', 85705, 'USA')
         );
@@ -151,6 +152,7 @@ class ProductTest extends TestCase
             'supplier' => [
                 'supplier_name' => 'Supplier',
                 'email' => 'test@example.com',
+                'type' => 'Private',
                 'website' => 'http://www.google.com',
                 'phone' => '+8869999999',
                 'logo_url' => 'http://www.facebook.com',

@@ -2,6 +2,7 @@
 
 namespace Farmerant\Farmerantcrawl\Listing;
 
+use Farmerant\Farmerantcrawl\Contract\Fillable;
 use Farmerant\Farmerantcrawl\Contract\ListingInterface;
 
 /**
@@ -10,7 +11,7 @@ use Farmerant\Farmerantcrawl\Contract\ListingInterface;
  */
 class Supplier implements ListingInterface
 {
-    //TODO: Address using object to replace.
+    use Fillable;
 
     /**
      * @var
@@ -33,6 +34,11 @@ class Supplier implements ListingInterface
      * @var
      */
     private $logoUrl;
+
+    /**
+     * @var
+     */
+    private $type;
 
     /**
      * @var Address
@@ -100,6 +106,7 @@ class Supplier implements ListingInterface
         return array_merge([
             'supplier_name' => $this->name,
             'email' => $this->email,
+            'type' => $this->type,
             'website' => $this->website,
             'phone' => $this->phone,
             'logo_url' => $this->logoUrl,
