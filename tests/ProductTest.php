@@ -5,6 +5,7 @@ namespace Farmerant\Tests;
 use Farmerant\Farmerantcrawl\Listing\Address;
 use Farmerant\Farmerantcrawl\Listing\Image;
 use Farmerant\Farmerantcrawl\Listing\Product;
+use Farmerant\Farmerantcrawl\Listing\ProductTag;
 use Farmerant\Farmerantcrawl\Listing\Supplier;
 use PHPUnit\Framework\TestCase;
 
@@ -88,13 +89,24 @@ class ProductTest extends TestCase
     public function add_tags()
     {
         // Act
-        $this->product->addTag(['og:title', 'Facebook'])->addTag(['og:description' => 'description']);
+        $this->product->addTag(new ProductTag(ProductTag::TYPE_TAG, 'Product Detail', 'og:title', 'Facebook'))
+            ->addTag(new ProductTag(ProductTag::TYPE_CATEGORY, null, 'Cropping', null));
 
         // Assert
         $this->validArray([
             'tags' => [
-                ['og:title', 'Facebook'],
-                ['og:description' => 'description'],
+                [
+                    'type' => 'Tag',
+                    'category' => 'Product Detail',
+                    'name' => 'og:title',
+                    'value' => 'Facebook',
+                ],
+                [
+                    'type' => 'Category',
+                    'category' => null,
+                    'name' => 'Cropping',
+                    'value' => null,
+                ],
             ],
         ]);
     }

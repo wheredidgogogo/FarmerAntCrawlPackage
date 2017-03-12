@@ -88,9 +88,9 @@ class Product implements ListingInterface
     public $priceDescription;
 
     /**
-     * @var array
+     * @var Collection
      */
-    protected $tags = [];
+    protected $tags;
 
     /**
      * @var Collection
@@ -123,6 +123,7 @@ class Product implements ListingInterface
     public function __construct($source)
     {
         $this->images = new Collection();
+        $this->tags = new Collection();
         $this->source = $source;
     }
 
@@ -135,12 +136,12 @@ class Product implements ListingInterface
     }
 
     /**
-     * @param array $tag
+     * @param ProductTag $tag
      * @return $this
      */
-    public function addTag(array $tag)
+    public function addTag(ProductTag $tag)
     {
-        $this->tags[] = $tag;
+        $this->tags->push($tag);
 
         return $this;
     }
@@ -189,7 +190,9 @@ class Product implements ListingInterface
             'currency' => $this->currency,
             'currency_symbol' => $this->currencySymbol,
             'price_description' => $this->priceDescription,
-            'tags' => $this->tags,
+            'tags' => $this->tags->map(function (ProductTag $tag) {
+                return $tag->toArray();
+            })->toArray(),
             'language' => $this->language,
             'source_country' => $this->sourceCountry,
             'images' => $this->images->map(function (Image $image){
